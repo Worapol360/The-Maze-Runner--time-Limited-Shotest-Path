@@ -2,23 +2,45 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.the.maze.runner.controller.GridController">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.the.maze.runner.controller.GridController"
+      prefWidth="1100" prefHeight="820"
+      style="-fx-background-color: #121212;">
 
-    <top>
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="BFS" onAction="#runBFS"/>
-            <Button text="Dijkstra" onAction="#runDijkstra"/>
-            <Button text="A*" onAction="#runAStar"/>
-            <Button text="Back" onAction="#goBack"/>
-        </HBox>
-    </top>
+    <BorderPane VBox.vgrow="ALWAYS">
+        <top>
+            <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 20 0; -fx-background-color: #282828; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 5);">
+                <Button text="BFS" onAction="#runBFS"
+                        style="-fx-background-color: #3366ff; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 16px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Button text="Dijkstra" onAction="#runDijkstra"
+                        style="-fx-background-color: #ffaa00; -fx-text-fill: #121212; -fx-font-weight: bold; -fx-background-radius: 8; -fx-font-size: 16px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Button text="A*" onAction="#runAStar"
+                        style="-fx-background-color: linear-gradient(#00b06a, #009e5f); -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 16px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Separator orientation="VERTICAL" prefHeight="25" />
+                <Button text="New Maze" onAction="#goInitialize"
+                        style="-fx-background-color: #444; -fx-text-fill: #EEE; -fx-background-radius: 8; -fx-font-size: 16px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Button text="End" onAction="#goBack"
+                        style="-fx-background-color: #900; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 16px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+            </HBox>
+        </top>
 
-    <center>
-        <Pane fx:id="gridPane" prefWidth="600" prefHeight="600"
-              style="-fx-background-color: lightgray;"/>
-    </center>
-
-</BorderPane>
+        <center>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS" style="-fx-padding: 20;">
+                <Pane fx:id="gridPane" 
+                    prefWidth="478" prefHeight="478"
+                      style="-fx-background-color: #1e1e1e;
+                             -fx-border-color: #333333;
+                             -fx-border-width: 2;
+                             -fx-border-radius: 10;
+                             -fx-background-radius: 10;
+                             -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 0);
+                             
+                             -fx-padding: 10;"
+                      /> 
+            </HBox>
+        </center>
+    </BorderPane>
+</VBox>

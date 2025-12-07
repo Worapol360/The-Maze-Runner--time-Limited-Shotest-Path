@@ -16,11 +16,13 @@ public class GridView {
     private Grid grid;
 
     // Define tile size for visualization
-    private final int TILE_SIZE;
+    private int maxWidth;
+    private int maxHeight;
 
     // --- Constructor ---
-    public GridView(int TILE_SIZE) {
-        this.TILE_SIZE = TILE_SIZE;
+    public GridView(int maxWidth, int maxHeight) {
+        this.maxWidth = maxWidth;
+        this.maxHeight = maxHeight;
     }
 
     // --- Public Drawing Methods ---
@@ -87,6 +89,8 @@ public class GridView {
             return;
         gridPane.getChildren().clear();
 
+        int TILE_SIZE = Math.min(maxWidth / grid.getHeight(), maxHeight / grid.getWidth());
+
         for (int y = 0; y < grid.getHeight(); y++) {
             for (int x = 0; x < grid.getWidth(); x++) {
                 Node n = grid.getNode(x, y);
@@ -150,6 +154,8 @@ public class GridView {
     private void drawStartEndNodes(List<Node> path) {
         Node start = grid.getStartNode();
         Node end = grid.getEndNode();
+
+        int TILE_SIZE = Math.min(maxWidth / grid.getHeight(), maxHeight / grid.getWidth());
 
         if (start != null) {
             Rectangle startRect = createSpecialRect(start, Color.GREEN, TILE_SIZE);

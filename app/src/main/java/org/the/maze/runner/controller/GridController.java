@@ -19,29 +19,13 @@ public class GridController {
     private GridView gridView;
 
     // Define tile size for visualization
-    private static final int TILE_SIZE = 30;
-
-    // The input string you provided
-    private final String MAZE_INPUT_STRING = "###############\n" +
-            "#S#\"2\"\"1\"\"5\"\"8\"\"3\"\"7\"\"1\"\"2\"\"4\"\"4\"\"9\"#\n" +
-            "#\"10\"#\"3\"#\"1\"\"5\"\"10\"####\"10\"\"2\"#\n" +
-            "#\"10\"\"1\"\"6\"\"7\"\"2\"\"5\"\"3\"\"4\"\"10\"#\"3\"\"9\"\"9\"#\n" +
-            "#\"7\"\"4\"\"1\"#####\"3\"#####\n" +
-            "#\"2\"#\"7\"\"5\"\"1\"#\"5\"\"8\"\"2\"#\"5\"\"7\"\"4\"#\n" +
-            "#\"5\"##\"10\"\"7\"#\"5\"\"6\"\"5\"#\"3\"\"3\"\"2\"#\n" +
-            "#\"5\"\"7\"\"1\"\"2\"\"6\"#\"3\"\"10\"\"3\"\"9\"\"4\"#\"10\"#\n" +
-            "#\"3\"#\"1\"####\"1\"\"4\"###\"9\"#\n" +
-            "#\"2\"#\"10\"\"8\"\"4\"#\"1\"\"9\"\"8\"\"5\"\"5\"#\"10\"#\n" +
-            "#\"6\"#\"7\"#\"4\"#\"4\"###\"8\"#\"5\"#\n" +
-            "#\"6\"\"5\"\"4\"#\"5\"\"4\"\"10\"#\"9\"#\"9\"#\"1\"#\n" +
-            "#\"4\"\"7\"###\"2\"\"3\"#\"8\"#\"8\"#\"7\"#\n" +
-            "#\"7\"\"4\"\"1\"\"8\"\"1\"\"7\"\"10\"\"1\"\"6\"\"4\"\"10\"\"5\"G#\n" +
-            "###############";
+    private static final int maxWidth = 478;
+    private static final int maxHeight = 478;
 
     @FXML
     public void initialize() {
-        this.gridView = new GridView(TILE_SIZE);
-        Pane initialVisualization = gridView.draw(MAZE_INPUT_STRING);
+        this.gridView = new GridView(maxWidth, maxHeight);
+        Pane initialVisualization = gridView.draw(App.getMaze());
 
         // CRITICAL: Call the update function to place the new Pane into the FXML
         // container
@@ -97,5 +81,9 @@ public class GridController {
 
     public void goBack() {
         App.setRoot("main-view");
+    }
+
+    public void goInitialize() {
+        App.setRoot("input-view");
     }
 }

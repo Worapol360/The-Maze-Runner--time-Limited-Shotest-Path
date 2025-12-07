@@ -133,10 +133,12 @@
                 </VBox>
             </HBox>
 
+            <Separator orientation="HORIZONTAL" prefHeight="25" />
+
             <Label text="Quick Examples"
                    style="-fx-font-size: 16px; -fx-text-fill: #CCCCCC;"/>
 
-            <GridPane hgap="10" vgap="10" alignment="CENTER">
+            <GridPane hgap="5" vgap="10" alignment="CENTER">
                 <!-- 6 Example Buttons -->
                 <Button text="15x15" onAction="#onExample1" GridPane.columnIndex="0" GridPane.rowIndex="0"
                         prefWidth="90"
@@ -166,20 +168,19 @@
             <Label text="Maze Visualization"
                    style="-fx-font-size: 20px; -fx-text-fill: #CCCCCC; -fx-font-weight: bold;"/>
 
-            <TextArea fx:id="mazeOutputArea"
-                      prefHeight="280"
-                      editable="false"
-                      wrapText="false"
-                      style="
-                          -fx-background-color: #1e1e1e;
-                          -fx-control-inner-background: #1e1e1e;
-                          -fx-text-fill: #EDEDED;
-                          -fx-font-size: 14px;
-                          -fx-border-color: #333333;
-                          -fx-border-radius: 8;
-                          -fx-background-radius: 8;
-                          -fx-padding: 12;
-                      "/>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS" style="-fx-padding: 10;">
+                <Pane fx:id="gridPane" 
+                    prefWidth="280" prefHeight="280"
+                      style="-fx-background-color: #1e1e1e;
+                             -fx-border-color: #333333;
+                             -fx-border-width: 2;
+                             -fx-border-radius: 10;
+                             -fx-background-radius: 10;
+                             -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 0);
+                             
+                             -fx-padding: 5;"
+                      /> 
+            </HBox>
         </VBox>
     </HBox>
 

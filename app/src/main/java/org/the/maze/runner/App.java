@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Stage primaryStage;
-    private static final Map<String, Object> dataStore = new HashMap<>();
+    private static String mazeStore;
 
     public static Stage getPrimaryStage() {
         return primaryStage;
@@ -43,11 +43,11 @@ public class App extends Application {
     // -----------------------------
     // DATA PASSING BETWEEN PAGES
     // -----------------------------
-    public static void setData(String key, Object value) {
-        dataStore.put(key, value);
+    public static void setMaze(String maze) {
+        mazeStore = maze;
     }
 
-    public static Object getData(String key) {
-        return dataStore.get(key);
+    public static String getMaze() {
+        return mazeStore;
     }
 }

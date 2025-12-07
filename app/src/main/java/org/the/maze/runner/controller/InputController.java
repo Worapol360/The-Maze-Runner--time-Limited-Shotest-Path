@@ -2,6 +2,7 @@ package org.the.maze.runner.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -12,8 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.the.maze.runner.App;
+import org.the.maze.runner.ui.GridView;
 
 public class InputController {
+
+    @FXML
+    private Pane gridPane;
 
     @FXML
     private TextArea mazeInputArea;
@@ -29,6 +34,42 @@ public class InputController {
 
     @FXML
     private TextArea mazeGenerateHeight;
+
+    private GridView gridView;
+
+    // Define tile size for visualization
+    private static final int maxWidth = 300;
+    private static final int maxHeight = 300;
+
+    @FXML
+    public void initialize() {
+        this.gridView = new GridView(maxWidth, maxHeight);
+
+        // Listen for text changes in the TextArea
+        mazeInputArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            Pane initialVisualization = gridView.draw(newValue);
+
+            updateVisualizationPane(initialVisualization);
+
+        });
+    }
+
+    private void updateVisualizationPane(Pane newPane) {
+        if (gridPane == null) {
+            System.err.println("Error: FXML gridPane container is null.");
+            return;
+        }
+        // 1. Clear all existing children from the container
+        gridPane.getChildren().clear();
+
+        // 2. Add the new Pane containing the visualization
+        gridPane.getChildren().add(newPane);
+
+        // Optional: Ensure the new Pane is stretched to fill the container if gridPane
+        // is a layout like StackPane/BorderPane
+        // newPane.maxWidth(gridPane.getWidth());
+        // newPane.maxHeight(gridPane.getHeight());
+    }
 
     // Called when user clicks "Choose Maze File"
     @FXML
@@ -133,7 +174,7 @@ public class InputController {
         }
 
         // Pass data to another controller
-        App.setData("mazeInput", mazeText);
+        App.setMaze(mazeText);
 
         // Load next page
         App.setRoot("grid-view");
