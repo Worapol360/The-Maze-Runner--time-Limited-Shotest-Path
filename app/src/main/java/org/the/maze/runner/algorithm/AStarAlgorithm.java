@@ -46,7 +46,7 @@ public class AStarAlgorithm implements PathFindingAlgorithm {
             for(Node neighbor : grid.getNeighbors(current)){
 
                 // Skip neighbors that are walls/blocked.
-                if(neighbor.isWall){
+                if(neighbor.isWall()){
                     continue;
                 }
                 
